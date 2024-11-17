@@ -1,11 +1,12 @@
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
 metadata:
-  name: allow-all
-  namespace: tenant-a
+  name: allow-all-within-ns-policy
 spec:
-  podSelector: {}
-  ingress:
-    - {}
+  endpointSelector: {}
   egress:
+  - toEndpoints:
+    - {}
+  ingress:
+  - fromEndpoints:
     - {}
