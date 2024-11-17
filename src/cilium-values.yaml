@@ -1,0 +1,9 @@
+kubeProxyReplacement: "strict"
+hubble:
+  enabled: true
+  relay:
+    enabled: true
+  ui:
+    enabled: true
+operator:
+  replicas: 1
