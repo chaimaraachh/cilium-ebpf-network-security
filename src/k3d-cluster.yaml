@@ -2,18 +2,18 @@ apiVersion: k3d.io/v1alpha5
 kind: Simple
 metadata:
   name: cilium-cluster
-servers: 1
-agents: 2
+servers: 3  # 3 Control Plane Nodes for HA
+agents: 3  # 2 for workloads + 1 for observability
 ports:
-  - port: 6443:6443 # Kubernetes API Server
+  - port: 6443:6443  # Kubernetes API Server
     nodeFilters:
       - loadbalancer
-  - port: 8080:80 # Expose services on localhost:8080
+  - port: 8080:80  # Expose services on localhost:8080
     nodeFilters:
       - loadbalancer
 options:
   k3s:
     extraArgs:
-      - arg: "--disable=traefik"
+      - arg: "--disable=traefik"  # Disable Traefik for ingress control
         nodeFilters:
           - server:*
