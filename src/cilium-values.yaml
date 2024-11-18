@@ -1,9 +1,20 @@
 kubeProxyReplacement: "true"
+
 hubble:
   enabled: true
   relay:
-    enabled: true
+    enabled: false
   ui:
-    enabled: true
+    enabled: false
+
 operator:
   replicas: 1
+
+global:
+  mtu: 1376
+  tunnel: vxlan
+  autoDirectNodeRoutes: false
+  nodePort:
+    mode: "snat"
+debug:
+  enabled: true
