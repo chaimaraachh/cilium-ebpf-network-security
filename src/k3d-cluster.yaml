@@ -2,7 +2,7 @@ apiVersion: k3d.io/v1alpha5
 kind: Simple
 metadata:
   name: cilium-cluster
-servers: 3  # 3 Control Plane Nodes for HA
+servers: 1  # 1 Control Plane Nodes for HA
 agents: 3  # 2 for workloads + 1 for observability
 ports:
   - port: 6443:6443  # Kubernetes API Server
@@ -17,3 +17,7 @@ options:
       - arg: "--disable=traefik"  # Disable Traefik for ingress control
         nodeFilters:
           - server:*
+      - arg: "--disable=flannel"  # Disable Flannel to prevent conflict with Cilium
+        nodeFilters:
+          - server:*
+
